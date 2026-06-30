@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile
     container_name: bi-backend
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - .:/app
       - model_cache:/root/.cache/torch/sentence_transformers  # Cache models
