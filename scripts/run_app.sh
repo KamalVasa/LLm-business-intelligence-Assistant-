@@ -16,6 +16,10 @@ python scripts/init_data.py
 if [ "$MODE" = "dev" ]; then
     echo "Starting application in development mode..."
     
+    # Override .env variables for local dev
+    export DB_HOST=localhost
+    export BACKEND_URL=http://localhost:8000
+    
     # Setup database
     echo "Setting up database..."
     python -c "from backend.database import create_tables; create_tables()"
