@@ -169,6 +169,9 @@ def preprocess_and_index_documents():
             # Mark document as processed
             new_doc.processed = True
         
+        # Commit the document insertions to release the SQLite write lock before heavy computation
+        db.commit()
+        
         # Compute embeddings for all chunks
         if chunks:
             embeddings = model.encode(chunks, convert_to_numpy=True)

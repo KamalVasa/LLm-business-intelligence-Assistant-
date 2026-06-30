@@ -32,7 +32,7 @@ def retrieve_relevant_chunks(query: str, db: Session = None):
         # Create query record
         query_record = Query(query_text=query, timestamp=datetime.utcnow())
         db.add(query_record)
-        db.flush()  # Get the ID without committing
+        db.commit()  # Commit to release the SQLite write lock before heavy computation
         
         # Compute query embedding
         query_embedding = embedding_model.encode([query], convert_to_numpy=True)
