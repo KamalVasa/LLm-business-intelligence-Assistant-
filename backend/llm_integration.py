@@ -193,12 +193,14 @@ JSON Response:"""
                 return structured_response
             else:
                 logger.warning("Could not find valid JSON in the response")
-                return {"error": "Invalid JSON format", "raw_response": generate_response(query, retrieved_chunks)}
+                raw = generate_response(query, retrieved_chunks)
+                return f"Error: The AI model failed to output valid JSON. Raw response:\n\n{raw}"
                 
         except json.JSONDecodeError as e:
             logger.warning(f"Failed to parse JSON response: {e}")
-            return {"error": "JSON parsing error", "raw_response": generate_response(query, retrieved_chunks)}
+            raw = generate_response(query, retrieved_chunks)
+            return f"Error: The AI model failed to output valid JSON. Raw response:\n\n{raw}"
             
     except Exception as e:
         logger.error(f"Error generating structured response: {e}")
-        return {"error": str(e), "raw_response": "Error generating response"}
+        return f"Error generating response: {str(e)}"
