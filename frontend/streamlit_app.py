@@ -57,7 +57,7 @@ if st.session_state.current_view == "query":
                     response = requests.post(
                         f"{API_URL}/query", 
                         json={"query": query, "structured_output": use_structured_output},
-                        timeout=30
+                        timeout=120
                     )
                     
                     if response.status_code == 200:
