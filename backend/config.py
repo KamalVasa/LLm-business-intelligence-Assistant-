@@ -37,9 +37,13 @@ MONITORING_INTERVAL = int(os.getenv("MONITORING_INTERVAL", "60"))
 MONITORING_THRESHOLD = float(os.getenv("MONITORING_THRESHOLD", "0.8"))
 
 # Database configuration
-DB_HOST = os.getenv("DB_HOST", "db")
+DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = int(os.getenv("DB_PORT", "5432"))
 DB_USER = os.getenv("DB_USER", "user")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "password")
 DB_NAME = os.getenv("DB_NAME", "bi_db")
-DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+if DB_HOST == "localhost":
+    DATABASE_URL = "sqlite:///./bi_db.sqlite"
+else:
+    DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
