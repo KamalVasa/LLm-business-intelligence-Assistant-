@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 import os
-import pkg_resources
+
 from backend.models import (
     QueryRequest, QueryResponse, IngestResponse, 
     StructuredResponse, HealthResponse, MetricResponse,
@@ -32,7 +32,8 @@ RESPONSE_TIME = Histogram("response_time", "Response Time in seconds", ["endpoin
 
 # Get version from package resources or environment variable
 try:
-    version = pkg_resources.get_distribution("business-intelligence-assistant").version
+    import importlib.metadata
+    version = importlib.metadata.version("business-intelligence-assistant")
 except:
     version = os.environ.get("APP_VERSION", "1.0.0")
 
