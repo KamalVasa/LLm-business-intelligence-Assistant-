@@ -4,6 +4,7 @@ pandas==1.5.3
 numpy==1.23.5
 faiss-cpu==1.7.3
 sentence-transformers==2.2.2
+huggingface-hub==0.22.2
 transformers==4.26.1
 torch==1.13.1
 pydantic==1.10.7
