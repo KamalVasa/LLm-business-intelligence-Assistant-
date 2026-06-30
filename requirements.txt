@@ -29,3 +29,4 @@ pytest-mock==3.10.0
 freezegun==1.2.2
 python-dotenv==1.0.0
 tenacity==8.2.2
+httpx<0.28.0

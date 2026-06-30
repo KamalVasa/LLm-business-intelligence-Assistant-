@@ -17,7 +17,7 @@ from backend.retrieval import retrieve_relevant_chunks
 from backend.llm_integration import generate_response, generate_structured_response
 from backend.data_preprocessing import preprocess_and_index_documents
 from backend.logging_config import setup_logging  # ensures logging is configured
-from backend.monitoring import router as metrics_router
+from backend.monitoring import router as metrics_router, REQUEST_COUNT, RESPONSE_TIME
 from backend.database import get_db, Document, DocumentChunk, Query
 from prometheus_client import Counter, Histogram
 import sqlalchemy as sa
@@ -26,9 +26,6 @@ from typing import Dict, Any
 
 logger = logging.getLogger(__name__)
 
-# Prometheus metrics
-REQUEST_COUNT = Counter("request_count", "App Request Count", ["method", "endpoint", "http_status"])
-RESPONSE_TIME = Histogram("response_time", "Response Time in seconds", ["endpoint"])
 
 # Get version from package resources or environment variable
 try:
