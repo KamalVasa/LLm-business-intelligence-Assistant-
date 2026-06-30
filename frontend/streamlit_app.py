@@ -7,7 +7,7 @@ import json
 import time
 import os
 from datetime import datetime
-from frontend.components import charts, sidebar, visualizations, document_viewer
+from components import charts, sidebar, visualizations, document_viewer
 
 # Get backend URL from environment variable or use default
 API_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")

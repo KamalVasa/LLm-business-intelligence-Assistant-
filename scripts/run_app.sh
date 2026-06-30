@@ -19,7 +19,6 @@ if [ "$MODE" = "dev" ]; then
     # Override .env variables for local dev
     export DB_HOST=localhost
     export BACKEND_URL=http://localhost:8000
-    export PYTHONPATH=$(pwd)
     
     # Setup database
     echo "Setting up database..."
