@@ -8,6 +8,9 @@ ENV PYTHONUNBUFFERED 1
 # Set working directory
 WORKDIR /app
 
+# Install system dependencies for building C extensions like psutil
+RUN apt-get update && apt-get install -y --no-install-recommends gcc python3-dev && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
